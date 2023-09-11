@@ -1,0 +1,165 @@
+PROGRAM 1
+import java.util.*;
+class Animal {
+    private String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+   
+    public String toString() {
+        return "Animal: " + name;
+    }
+}
+
+class Mammal extends Animal {
+    public Mammal(String name) {
+        super(name);
+    }
+
+   
+    public String toString() {
+        return "Mammal: " + super.toString();
+    }
+}
+
+class Cat extends Mammal {
+    public Cat(String name) {
+        super(name);
+    }
+
+ 
+    public String toString() {
+        return "Cat: " + super.toString();
+    }
+   
+    public void greets() {
+        System.out.println(" Meow");
+    }
+}
+
+class Dog extends Mammal {
+    public Dog(String name) {
+        super(name);
+    }
+
+   
+    public String toString() {
+        return "Dog: " + super.toString();
+    }
+
+    public void greets() {
+        System.out.println( " Woof");
+    }
+
+    public void greets(Dog another) {
+        System.out.println("Woooof");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner sc=new Scanner(System.in);
+    System.out.println("Enter the Cat name:");
+        String catname=sc.nextLine();
+        System.out.println("Enter the Dog1 name:");
+        String Dog1=sc.nextLine();
+        System.out.println("Enter the Dog2 name:");
+        String Dog2=sc.nextLine();
+        Animal animal = new Animal("Generic Animal");
+        Mammal mammal = new Mammal("Generic Mammal");
+        Cat cat = new Cat(catname);
+        Dog dog1 = new Dog(Dog1);
+        Dog dog2 = new Dog(Dog2);
+
+        System.out.println(animal);
+        System.out.println(mammal);
+        System.out.println(cat);
+        System.out.println(dog1);
+        System.out.println(dog2);
+
+        cat.greets();
+        dog1.greets();
+        dog1.greets(dog2);
+    }
+}
+OUTPUT 
+Enter the Cat name:
+kitty
+Enter the Dog1 name:
+doggo
+Enter the Dog2 name:
+spikey
+Animal: Generic Animal
+Mammal: Animal: Generic Mammal
+Cat: Mammal: Animal: kitty
+Dog: Mammal: Animal: doggo
+Dog: Mammal: Animal: spikey
+ Meow
+ Woof
+Woooof
+
+PROGRAM 2
+import java.util.Scanner;
+
+class Shape {
+    public double calculateArea() {
+        return 0.0;
+    }
+}
+
+class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double calculateArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Rectangle extends Shape {
+    private double width;
+    private double height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public double calculateArea() {
+        return width * height; // Area of a rectangle: width * height
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the radius of the Circle: ");
+        double circleRadius = scanner.nextDouble();
+        Circle circle = new Circle(circleRadius);
+
+        System.out.print("Enter the width of the Rectangle: ");
+        double rectangleWidth = scanner.nextDouble();
+
+        System.out.print("Enter the height of the Rectangle: ");
+        double rectangleHeight = scanner.nextDouble();
+        Rectangle rectangle = new Rectangle(rectangleWidth, rectangleHeight);
+
+        System.out.println("Area of the Circle: " + circle.calculateArea());
+        System.out.println("Area of the Rectangle: " + rectangle.calculateArea());
+
+        // Close the scanner when done to prevent resource leak
+        scanner.close();
+    }
+}
